@@ -1,6 +1,7 @@
 name: Build ANTs for Windows
 
 on:
+  push:
   # Allows to run the workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -25,7 +26,7 @@ jobs:
           git clone https://github.com/ANTsX/ANTs.git source
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.temp}}/install ../source
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.temp}}/install ../source -G "Visual Studio 16 2019 Win32" -A x86
 #-G "Visual Studio 14 2015 Win64" -A x64
       
       - name: Build ANTs
